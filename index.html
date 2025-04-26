@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Gửi Khánh Hà 💌</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f6d365, #fda085);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .card {
+      background: white;
+      padding: 40px 60px;
+      border-radius: 20px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      animation: slideIn 1.5s ease-out;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #ff4e50;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #444;
+    }
+
+    button {
+      margin: 20px 10px 0;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      transform: rotate(45deg);
+      animation: float 4s infinite ease-in-out;
+      opacity: 0.6;
+    }
+
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
+      100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+    }
+
+    #promise {
+      margin-top: 30px;
+      display: none;
+      font-size: 1.1rem;
+      color: #ff4e50;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    #noBtn {
+      position: relative;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Gửi Khánh Hà 💘</h1>
+    <p>Tớ có điều này muốn nói với cậu từ lâu rồi...</p>
+    <p><strong>Tớ thích cậu rất nhiều luôn á 🥺❤️ Làm người yêu tớ nhaaaa!</strong></p>
+    <div>
+      <button onclick="accept()">Đồng ý ❤️</button>
+      <button id="noBtn" onmouseover="runAway(this)">Từ chối 😢</button>
+    </div>
+    <div id="promise">
+      <p>✨ Tớ hứa sẽ luôn nhường cậu ăn ngon 🍰</p>
+      <p>✨ Luôn nhắn tin chúc cậu ngủ ngon 💤</p>
+      <p>✨ Không bao giờ làm cậu buồn 😘</p>
+      <p>✨ Mãi thương cậu thiệt nhiều ❤️</p>
+    </div>
+  </div>
+
+  <audio id="bgMusic" autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/26/audio_6b17b1e15b.mp3?filename=love-story-ambient-piano-121066.mp3" type="audio/mp3">
+  </audio>
+
+  <script>
+    function accept() {
+      document.getElementById("promise").style.display = "block";
+
+      // trái tim bay
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 2 + 2) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+      }
+    }
+
+    function runAway(btn) {
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 50);
+      btn.style.position = "absolute";
+      btn.style.left = x + "px";
+      btn.style.top = y + "px";
+    }
+
+    // Auto play music
+    setTimeout(() => {
+      const music = document.getElementById("bgMusic");
+      music.play().catch(() => {});
+    }, 1000);
+  </script>
+</body>
+</html>
